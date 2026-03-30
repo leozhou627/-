@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>付款失敗 | Leo 身心靈</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #F6F1E8;
+            --text-main: #2F3A2F;
+            --text-body: #5B5B5B;
+            --accent: #B08B57;
+            --danger: #EF4444;
+        }
+        body { background: var(--bg-main); color: var(--text-body); font-family: "Noto Sans TC", sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .card { background: #fff; padding: 50px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(74, 63, 53, 0.08); text-align: center; max-width: 500px; width: 100%; border-top: 6px solid var(--danger); }
+        h1 { font-family: "Noto Serif TC", serif; color: var(--text-main); font-size: 2em; margin-bottom: 15px; }
+        p { font-size: 1.1em; line-height: 1.8; margin-bottom: 30px; }
+        .btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 30px; font-size: 1.2em; font-weight: 700; border-radius: 50px; text-decoration: none; box-shadow: 0 8px 20px rgba(176, 139, 87, 0.2); transition: 0.3s; width: 100%; box-sizing: border-box; margin-bottom: 15px; }
+        .btn:hover { background: #9A7748; transform: translateY(-2px); }
+        .btn-line { background: #fff; color: #00B900; border: 2px solid #00B900; box-shadow: none; }
+        .btn-line:hover { background: #f0fff0; color: #009900; border-color: #009900; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <svg viewBox="0 0 24 24" width="80" height="80" stroke="var(--danger)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        
+        <h1>付款未能完成</h1>
+        <p>抱歉，您的刷卡授權未能成功。<br>這可能是由於網路不穩或信用卡發卡行的安全攔截。<br><br>您可以點擊下方按鈕重新嘗試付款，或者直接聯繫我的 LINE 由我來協助您。</p>
+        
+        <a href="index.html#action" class="btn">
+            返回重新付款
+        </a>
+        
+        <a href="https://line.me/ti/p/BeDyp_oIaY" target="_blank" class="btn btn-line">
+            聯繫 LINE 客服協助
+        </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo 身心靈 — 內在智慧，現代轉譯</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== 高級身心靈品牌配色 ===== */
+        :root {
+            --bg-main: #F6F1E8;       /* 沙色背景 */
+            --bg-card: #FFFFFF;       /* 純白卡片 */
+            --text-main: #2F3A2F;     /* 深林綠 (主標題) */
+            --text-body: #5B5B5B;     /* 深灰 (內文) */
+            --accent: #B08B57;        /* 香檳金 (按鈕/強調) */
+            --accent-hover: #9A7748;  /* 深金 */
+            --dark-bg: #2F3A2F;       /* 深色區塊背景 */
+            --shadow-soft: 0 10px 30px rgba(74, 63, 53, 0.08);
+            --success-green: #10B981;
+            --danger-red: #EF4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg-main);
+            color: var(--text-body);
+            font-family: "Noto Sans TC", sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: "Noto Serif TC", serif; color: var(--text-main); font-weight: 700; }
+        a { text-decoration: none; transition: 0.3s; }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ===== 按鈕設計 ===== */
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 16px 40px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(176, 139, 87, 0.3);
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 25px rgba(176, 139, 87, 0.4); }
+        
+        .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); box-shadow: none; }
+        .btn-outline:hover { background: rgba(176, 139, 87, 0.1); color: var(--accent-hover); }
+        
+        /* 獨立出來的深色區塊邊框按鈕 */
+        .btn-outline-light { background: transparent; color: #E9D7B6; border: 2px solid #E9D7B6; box-shadow: none; }
+        .btn-outline-light:hover { background: rgba(233, 215, 182, 0.1); color: #fff; border-color: #fff; }
+
+        /* ===== 區塊間距與錨點修復 ===== */
+        .section { padding: 100px 0; }
+        .section-dark { background: var(--dark-bg); color: #F6F1E8; }
+        .section-dark h2, .section-dark h3 { color: #E9D7B6; }
+        
+        /* 解決 fixed header 蓋住錨點標題的問題 */
+        section[id] { scroll-margin-top: 80px; }
+        
+        /* ===== SVG 容器 ===== */
+        .svg-icon { width: 64px; height: 64px; margin-bottom: 20px; }
+        .svg-hero { width: 100%; max-width: 500px; height: auto; }
+
+        /* ===== 排版工具 ===== */
+        .text-center { text-align: center; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        
+        /* ===== 卡片 ===== */
+        .card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            transition: 0.3s;
+            border: 1px solid rgba(176, 139, 87, 0.1);
+        }
+        .card:hover { transform: translateY(-5px); border-color: rgba(176, 139, 87, 0.3); }
+
+        /* ===== 導覽列 ===== */
+        header {
+            background: rgba(246, 241, 232, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(176, 139, 87, 0.1);
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-family: "Noto Serif TC", serif; font-size: 1.5em; font-weight: 700; color: var(--text-main); }
+        .nav-links a { margin-left: 30px; color: var(--text-main); font-weight: 500; font-family: "Noto Sans TC", sans-serif; }
+        .nav-links a:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .section { padding: 60px 0; }
+            .nav-links { display: none; }
+            h1 { font-size: 2.2em !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">Leo 身心靈</a>
+            <div class="nav-links">
+                <a href="#pain">內在現況</a>
+                <a href="#solution">轉譯系統</a>
+                <a href="#filter">適合對象</a>
+                <a href="#action" class="btn" style="padding: 8px 20px; font-size: 0.9em;">預約諮詢</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section section-dark" style="padding-top: 160px; padding-bottom: 120px;">
+        <div class="container grid-2">
+            <div>
+                <h1 style="font-size: 3em; line-height: 1.3; margin-bottom: 20px;">
+                    情緒不是你的敵人<br>
+                    <span style="color: var(--accent);">是你未曾解碼的內在信號</span>
+                </h1>
+                <p style="font-size: 1.2em; margin-bottom: 40px; color: #D6C2A3;">
+                    結合千年藏文化智慧與現代心理學框架。<br>
+                    不談空泛的放下，只給具體的解法。<br>
+                    3 個核心步驟，帶你停止無意識內耗，找回生活主導權。
+                </p>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="#action" class="btn">申請 90 分鐘深度諮詢</a>
+                    <a href="#pain" class="btn btn-outline-light">了解系統邏輯</a>
+                </div>
+            </div>
+            <div class="text-center">
+                <svg class="svg-hero" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="200" r="180" stroke="#B08B57" stroke-width="2" stroke-dasharray="8 8" opacity="0.5"/>
+                    <circle cx="200" cy="200" r="140" fill="url(#paint0_linear)"/>
+                    <path d="M200 80C266.274 80 320 133.726 320 200C320 266.274 266.274 320 200 320C133.726 320 80 266.274 80 200C80 133.726 133.726 80 200 80Z" stroke="#E9D7B6" stroke-width="4"/>
+                    <path d="M200 120C244.183 120 280 155.817 280 200C280 244.183 244.183 280 200 280" stroke="#B08B57" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="200" cy="200" r="40" fill="#E9D7B6"/>
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="60" y1="60" x2="340" y2="340" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#3C473C"/>
+                            <stop offset="1" stop-color="#2F3A2F"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section id="pain" class="section">
+        <div class="container text-center" style="max-width: 800px;">
+            <h2 style="font-size: 2.2em; margin-bottom: 20px;">為什麼「學會放下」這四個字，<br>執行起來卻讓人這麼疲憊？</h2>
+            <div style="width: 60px; height: 3px; background: var(--accent); margin: 0 auto 50px auto;"></div>
+            
+            <div class="card" style="text-align: left; margin-bottom: 40px;">
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 30px; display: flex; align-items: flex-start;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-right: 20px; flex-shrink: 0;">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        <div>
+                            <strong style="font-size: 1.2em; color: var(--text-main); display: block; margin-bottom: 5px;">白天偽裝堅強，深夜卻被焦慮吞噬</strong>
+                            <span style="color: var(--text-body);">看了無數心理學文章、試過冥想，對外人依然情緒穩定，但到了獨處時，那種無力感和自我懷疑卻再次將你淹沒？</span>
+                        </div>
+                    </li>
+                    <li style="margin-bottom: 30px; display: flex; align-items: flex-start;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-right: 20px; flex-shrink: 0;">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        <div>
+                            <strong style="font-size: 1.2em; color: var(--text-main); display: block; margin-bottom: 5px;">別人能迅速抽離，你卻深陷泥沼</strong>
+                            <span style="color: var(--text-body);">面對同樣的職場鬥爭與關係挫折，為什麼有些人能穩住陣腳，而你卻總是在原地內耗好幾天，甚至影響到睡眠與健康？</span>
+                        </div>
+                    </li>
+                    <li style="display: flex; align-items: flex-start;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-right: 20px; flex-shrink: 0;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <div>
+                            <strong style="font-size: 1.2em; color: var(--text-main); display: block; margin-bottom: 5px;">理智與情感的嚴重撕裂</strong>
+                            <span style="color: var(--text-body);">大腦明明知道「不要想太多」、「生氣解決不了問題」，但身體與情緒的反應，就是完全不受大腦控制？</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <p style="font-size: 1.2em; font-weight: 700; color: var(--text-main);">
+                這不是因為你天生敏感，或是 EQ 比別人低。<br>
+                而是你還沒有掌握一套<span style="color: var(--accent);">「翻譯情緒」的底層邏輯</span>。
+            </p>
+        </div>
+    </section>
+
+    <section id="solution" class="section" style="background: #FFFDFC;">
+        <div class="container text-center">
+            <h2 style="font-size: 2.2em; margin-bottom: 20px;">告別玄學，用 3 個步驟重構內在秩序</h2>
+            <div style="width: 60px; height: 3px; background: var(--accent); margin: 0 auto 50px auto;"></div>
+            
+            <div class="grid-3">
+                <div class="card text-center">
+                    <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <h3 style="margin-bottom: 15px;">Step 1. 辨識與捕捉信號</h3>
+                    <p>當情緒升起時，不再急著壓抑。透過覺察框架，精準定位這是「恐懼」、「匱乏」還是「越界」的警報聲。</p>
+                </div>
+                <div class="card text-center">
+                    <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    <h3 style="margin-bottom: 15px;">Step 2. 藏傳智慧轉譯</h3>
+                    <p>將讓你痛苦的「執念」轉換為「資源」。這不是正向思考，而是帶你切換視角，看到局勢的全局。</p>
+                </div>
+                <div class="card text-center">
+                    <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <h3 style="margin-bottom: 15px;">Step 3. 日常實踐落地</h3>
+                    <p>每天只需 5 分鐘。沒有繁複的儀式，將智慧直接寫入你的神經迴路，讓平靜成為你的預設狀態。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="authority" class="section">
+        <div class="container grid-2">
+            <div>
+                <svg viewBox="0 0 400 400" width="100%" height="auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="400" rx="20" fill="#2F3A2F"/>
+                    <path d="M200 40 L200 360" stroke="#B08B57" stroke-width="2" stroke-opacity="0.3"/>
+                    <path d="M40 200 L360 200" stroke="#B08B57" stroke-width="2" stroke-opacity="0.3"/>
+                    <circle cx="200" cy="200" r="100" stroke="#E9D7B6" stroke-width="4"/>
+                    <path d="M160 200 L190 230 L250 160" stroke="#B08B57" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div>
+                <h2 style="font-size: 2.2em; margin-bottom: 20px;">關於 Leo：內在邏輯的重構者</h2>
+                <div style="width: 60px; height: 3px; background: var(--accent); margin-bottom: 30px;"></div>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">
+                    我具備程式開發與技術顧問背景。長期的商場高壓與邏輯訓練，讓我發現：傳統身心靈的語言過於抽象，現代人很難真正「用」在生活裡。
+                </p>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">
+                    因此，我將深厚的藏文化智慧與現代心理學框架進行了系統化的「萃取與轉譯」。
+                </p>
+                <ul style="list-style: none; margin-bottom: 30px;">
+                    <li style="margin-bottom: 10px; color: var(--text-main); font-weight: 700;">✓ 不談玄學，只談落地與結果。</li>
+                    <li style="margin-bottom: 10px; color: var(--text-main); font-weight: 700;">✓ 長期接觸高壓工作者，特別理解這類族群的心理結構。</li>
+                    <li style="margin-bottom: 10px; color: var(--text-main); font-weight: 700;">✓ 用系統化的方式，解決你最感性的痛苦。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="filter" class="section" style="background: #F6F1E8; border-top: 1px solid rgba(176,139,87,0.1);">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 2.2em; margin-bottom: 20px;">這套系統適合你嗎？</h2>
+            <div style="width: 60px; height: 3px; background: var(--accent); margin: 0 auto 50px auto;"></div>
+            
+            <div class="grid-2">
+                <div class="card" style="border-top: 5px solid var(--success-green);">
+                    <h3 style="margin-bottom: 25px; color: var(--text-main); display: flex; align-items: center;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--success-green)" stroke-width="3" style="margin-right: 15px;">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        適合你，如果你：
+                    </h3>
+                    <ul style="list-style: none; font-size: 1.1em; color: var(--text-body);">
+                        <li style="margin-bottom: 15px; display: flex;"><span style="color: var(--success-green); margin-right: 10px;">✔</span> 情緒反覆影響工作、事業或親密關係</li>
+                        <li style="margin-bottom: 15px; display: flex;"><span style="color: var(--success-green); margin-right: 10px;">✔</span> 已經嘗試過很多心理學或身心靈方法但無效</li>
+                        <li style="margin-bottom: 0; display: flex;"><span style="color: var(--success-green); margin-right: 10px;">✔</span> 願意正視並解決問題，而不是繼續逃避</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="border-top: 5px solid var(--danger-red);">
+                    <h3 style="margin-bottom: 25px; color: var(--text-main); display: flex; align-items: center;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--danger-red)" stroke-width="3" style="margin-right: 15px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                        不適合你，如果你：
+                    </h3>
+                    <ul style="list-style: none; font-size: 1.1em; color: var(--text-body);">
+                        <li style="margin-bottom: 15px; display: flex;"><span style="color: var(--danger-red); margin-right: 10px;">✖</span> 只想找個人純聊天、發洩情緒</li>
+                        <li style="margin-bottom: 15px; display: flex;"><span style="color: var(--danger-red); margin-right: 10px;">✖</span> 期待別人幫你施展魔法，自己不願意改變</li>
+                        <li style="margin-bottom: 0; display: flex;"><span style="color: var(--danger-red); margin-right: 10px;">✖</span> 認為情緒失控全都是別人的錯</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="action" class="section section-dark text-center">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="font-size: 2.2em; margin-bottom: 20px; color: #E9D7B6;">深度 90 分鐘：內在重塑諮詢</h2>
+            <p style="font-size: 1.2em; margin-bottom: 40px; color: #D6C2A3;">
+                這不是一次單純的聊天，而是一場針對你個人卡點的「邏輯除錯與系統升級」。透過線上對話，幫你找出情緒盲區，重建內心防禦機制。
+            </p>
+            
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(176,139,87,0.2); border-radius: 16px; padding: 40px; margin-bottom: 40px; text-align: left;">
+                <h3 style="color: #fff; margin-bottom: 25px; font-size: 1.3em; display: flex; align-items: center;">
+                    <span style="background: var(--accent); color: #fff; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 15px; font-size: 0.8em;">🎁</span>
+                    完成諮詢後，你會具體得到：
+                </h3>
+                <ul style="list-style: none; color: #F6F1E8; font-size: 1.1em; line-height: 2;">
+                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--accent); margin-right: 15px; font-weight: bold;">✔</span> 
+                        <div><strong>明確知道卡點：</strong> 不再是模糊的焦慮，精準定位你的內耗根源。</div>
+                    </li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start;">
+                        <span style="color: var(--accent); margin-right: 15px; font-weight: bold;">✔</span> 
+                        <div><strong>專屬處理流程：</strong> 帶走一套你可以自己重複使用的情緒轉譯 SOP。</div>
+                    </li>
+                    <li style="display: flex; align-items: flex-start;">
+                        <span style="color: var(--accent); margin-right: 15px; font-weight: bold;">✔</span> 
+                        <div><strong>立即成效：</strong> 讓你當下就有更清晰的情緒處理方向，開始降低日常內耗。</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 15px; border-radius: 10px; color: #E9D7B6; font-weight: 700; font-size: 1.1em; margin-bottom: 30px; display: inline-block;">
+                🔥 為了確保諮詢品質，本月限量 15 席 <span style="color: #fff; margin: 0 15px;">|</span> 目前僅剩：<span style="color: #FF6B6B; font-size: 1.2em;">最後 3 席</span>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <div style="color: #94A3B8; text-decoration: line-through; font-size: 1.3em;">原價 NT$ 6,800</div>
+                <div style="color: #E9D7B6; font-size: 2.8em; font-weight: 800; margin: 10px 0; font-family: 'Noto Serif TC', serif;">
+                    本月體驗價 NT$ 3,200
+                </div>
+            </div>
+
+            <a href="checkout.html" class="btn" style="width: 100%; max-width: 450px; font-size: 1.4em; padding: 20px; border-radius: 8px;">
+                立即預約並完成付款
+            </a>
+            
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 30px; padding: 0 20px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" style="margin-right: 10px; flex-shrink: 0;">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span style="color: #A7F3D0; font-size: 0.95em; text-align: left;">
+                    <strong>零風險承諾：</strong>若在諮詢的前 20 分鐘內，你覺得這套邏輯無法為你帶來任何新啟發，可隨時中斷，我將無條件全額退款。
+                </span>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: #94A3B8; font-size: 0.9em;">還不確定是否需要諮詢？<br>
+                <a href="https://line.me/ti/p/@YOUR_LINE_ID" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">點此加入官方 LINE，免費領取「7天情緒急救包」</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #1A201A; color: rgba(255,255,255,0.6); padding: 40px 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: #E9D7B6; font-family: 'Noto Serif TC', serif; margin-bottom: 15px;">Leo 身心靈</h3>
+            <p style="margin-bottom: 20px; font-size: 0.9em;">內在智慧的現代轉譯者</p>
+            <p style="font-size: 0.8em;">Copyright © 2026 Leo. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
